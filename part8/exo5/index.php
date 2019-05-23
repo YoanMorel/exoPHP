@@ -9,56 +9,41 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
         <link rel="stylesheet" href="assets/css/style.css" />
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
-        <title>Exo5</title>
+        <title>Exo 5</title>
     </head>
 
     <body>
 
-        <?php
-        if (isset($_GET['erase'])):
-           unset($_POST);
-        endif;
-
-        if (!$_POST):
-           ?>
         <div class="container">
-           <form action="index.php" method="post" enctype="multipart/form-data">
-               <div class="row">
-                   <select class="form-control" name="gender">
-                       <option value="man">Homme</option>
-                       <option value="woman">Femme</option>
-                   </select>
-                   <div class="col">
-                       <input type="text" class="form-control" placeholder="First name" name="fname">
-                   </div>
-                   <div class="col">
-                       <input type="text" class="form-control" placeholder="Last name" name="lname">
-                   </div>
-                   <div class="custom-file">
-                       <input type="file" class="custom-file-input" id="customFile" name="fileToUp">
-                       <label class="custom-file-label" for="customFile">Choose file</label>
-                   </div>
-               </div>
-               <input class="btn btn-danger" type="submit" value="Submit">
-           </form>
+            <form action="index.php" method="post">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="<?= (isset($_COOKIE['login'])) ? $_COOKIE['login'] : 'Enter email'; ?>" name="login">
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="<?= (isset($_COOKIE['password'])) ? $_COOKIE['password'] : 'Password'; ?>" name="password">
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                </div>
+                <button type="submit" class="btn btn-success">Submit</button>
+            </form>
         </div>
-           <?php
-        else:
-           
-           $file = basename($_FILES['fileToUp']['name']);
-           if(strtolower(pathinfo($file,PATHINFO_EXTENSION)) != 'pdf'):
-              echo 'Le fichier n\'est pas au format PDF';
-           endif;
-           
-           echo htmlspecialchars(print_r($_POST, true));
-           
-           ?>
-
-           <a href="index.php?erase=1">Retour</a>
-
+        
         <?php
-        endif;
+        
+            if($_POST):
+               setcookie('login', $_POST['login'], time()+3600);
+               setcookie('password', $_POST['password'], time()+3600);
+        
         ?>
+        
+        <a href="showCookies.php">Show your delicious cookies</a>
+        
+        <?php endif; ?>
 
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->

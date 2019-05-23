@@ -9,56 +9,23 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
         <link rel="stylesheet" href="assets/css/style.css" />
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
-        <title>Exo5</title>
+        <title>Exo1</title>
     </head>
 
     <body>
 
-        <?php
-        if (isset($_GET['erase'])):
-           unset($_POST);
-        endif;
-
-        if (!$_POST):
-           ?>
         <div class="container">
-           <form action="index.php" method="post" enctype="multipart/form-data">
-               <div class="row">
-                   <select class="form-control" name="gender">
-                       <option value="man">Homme</option>
-                       <option value="woman">Femme</option>
-                   </select>
-                   <div class="col">
-                       <input type="text" class="form-control" placeholder="First name" name="fname">
-                   </div>
-                   <div class="col">
-                       <input type="text" class="form-control" placeholder="Last name" name="lname">
-                   </div>
-                   <div class="custom-file">
-                       <input type="file" class="custom-file-input" id="customFile" name="fileToUp">
-                       <label class="custom-file-label" for="customFile">Choose file</label>
-                   </div>
-               </div>
-               <input class="btn btn-danger" type="submit" value="Submit">
-           </form>
+
+            <div class="alert alert-success" role="alert">
+                <h4 class="alert-heading">CLIENT / SERVER INFOS</h4>
+                <p>Your User Agent : <?= $_SERVER['HTTP_USER_AGENT'] . "\n\n"; ?></p>
+                <p>Your IP adress : <?= $_SERVER['REMOTE_ADDR'] . "\n\n"; ?></p>
+                <p>Current server name : <?= $_SERVER['SERVER_NAME'] . "\n\n" ?></p>
+                <hr>
+                <p class="mb-0">Again, a usefull exercise by LA MANU LE HAVRE</p>
+            </div>
+
         </div>
-           <?php
-        else:
-           
-           $file = basename($_FILES['fileToUp']['name']);
-           if(strtolower(pathinfo($file,PATHINFO_EXTENSION)) != 'pdf'):
-              echo 'Le fichier n\'est pas au format PDF';
-           endif;
-           
-           echo htmlspecialchars(print_r($_POST, true));
-           
-           ?>
-
-           <a href="index.php?erase=1">Retour</a>
-
-        <?php
-        endif;
-        ?>
 
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
