@@ -14,7 +14,6 @@
 
     <body>
         <?php setlocale(LC_ALL, 'fr_FR'); ?>
-
         <div class="container">
             <form action="index.php" method="post">
                 <div class="row">
@@ -43,9 +42,9 @@
                             $maxYear = 2040;
 
                             while ($minYear <= $maxYear):
-                               ?><option value="<?= $minYear ?>"><?= $minYear; ?></option>
-                               <?php
-                               $minYear++;
+                             ?><option value="<?= $minYear ?>"><?= $minYear; ?></option>
+                             <?php
+                             $minYear++;
                             endwhile;
                             ?>
                         </select>
@@ -59,49 +58,47 @@
 
         <?php
         if ($_POST):
-           $year  = htmlspecialchars($_POST['year']);
-           $month = htmlspecialchars($_POST['month']);
-           $nbDay = date('t', mktime(0, 0, 0, $month, 1, $year));
-           $firstDay = date('N', mktime(0, 0, 0, $month, 1, $year));
-           ?>
-           <div class="container mx-auto">
-               <table class="table table-bordered">
-                   <caption><?= strftime('%B', mktime(0,0,0,$month,1,1970)).' '.$year; ?></caption>
-                   <thead class="thead-dark">
-                       <tr class="text-center">
-                           <th>Lundi</th>
-                           <th>Mardi</th>
-                           <th>Mercredi</th>
-                           <th>Jeudi</th>
-                           <th>Vendredi</th>
-                           <th>Samedi</th>
-                           <th>Dimanche</th>
-                       </tr>
-                   </thead>
-                   <tbody>
-                       <?php
-                       $x = 1;
-                       $flag = 1;
-                       while ($x <= $nbDay):
-                          ?><tr><?php
-                              for ($i = 1; $i <= 7; $i++):
-                                 if ($x < $firstDay || $x > $nbDay):
-                                    ?><td class="nothing"></td><?php
-                                 else:
-                                    ?><td class="alignText"><?= $flag++; ?></div</td><?php
-                                     endif;
-                                     $x++;
-                                  endfor;
-                                  ?></tr><?php
-                           endwhile;
-                           ?>
-                   </tbody>
-               </table>
-            <?php endif;
-            ?>
-
-
-
+         $year = htmlspecialchars($_POST['year']);
+         $month = htmlspecialchars($_POST['month']);
+         $nbDay = date('t', mktime(0, 0, 0, $month, 1, $year));
+         $firstDay = date('N', mktime(0, 0, 0, $month, 1, $year));
+         ?>
+         <div class="container mx-auto">
+             <table class="table table-bordered">
+                 <caption><?= strftime('%B', mktime(0, 0, 0, $month, 1, 1970)) . ' ' . $year; ?></caption>
+                 <thead class="thead-dark">
+                     <tr class="text-center">
+                         <th>Lundi</th>
+                         <th>Mardi</th>
+                         <th>Mercredi</th>
+                         <th>Jeudi</th>
+                         <th>Vendredi</th>
+                         <th>Samedi</th>
+                         <th>Dimanche</th>
+                     </tr>
+                 </thead>
+                 <tbody>
+                 <?php
+                  $xDay = 1;
+                  $date = 1;
+                  
+                  while ($xDay <= $nbDay):
+                   ?><tr><?php
+                   for ($i = 1; $i <= 7; $i++):
+                    if ($xDay < $firstDay || $date > $nbDay):
+                     ?><td class="nothing"></td><?php
+                    else:
+                     ?><td class="alignText"><?= $date++; ?></td><?php
+                    endif;
+                    $xDay++;
+                   endfor;
+                   ?></tr><?php
+                  endwhile;
+                 ?>
+                 </tbody>
+             </table>
+            <?php endif; ?>
+             
             <!-- Optional JavaScript -->
             <!-- jQuery first, then Popper.js, then Bootstrap JS -->
             <script src="https://code.jquery.com/jquery-3.4.0.js" integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo=" crossorigin="anonymous"></script>
