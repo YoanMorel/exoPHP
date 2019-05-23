@@ -22,7 +22,7 @@
         if (!$_POST):
            ?>
         <div class="container">
-           <form action="index.php" method="post" enctype="multipart/form-data">
+           <form action="<?= $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data">
                <div class="row">
                    <select class="form-control" name="gender">
                        <option value="man">Homme</option>
