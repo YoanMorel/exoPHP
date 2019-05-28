@@ -1,7 +1,7 @@
 <?php
 
 $gender = 'quentin';
-$age = 30;
+$age = 17;
 
 function useless($param1, $param2) {
     $chaine = '';
@@ -19,6 +19,6 @@ function useless($param1, $param2) {
     return $chaine;
 }
 
-useless($gender, $age);
+echo useless($gender, $age);
 
 ?>

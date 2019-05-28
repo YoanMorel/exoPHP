@@ -4,5 +4,5 @@ function lol() {
     return true;
 }
 
-lol();
+echo lol();
 ?>

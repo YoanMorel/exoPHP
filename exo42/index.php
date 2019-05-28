@@ -6,6 +6,6 @@ function useless($param) {
     return $param;
 }
 
-useless($chaine);
+echo useless($chaine);
 
 ?>

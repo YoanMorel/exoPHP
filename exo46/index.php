@@ -5,9 +5,9 @@ $firstName = 'Yoan';
 $age = 30;
 
 function useless($param1, $param2, $param3) {
-    return 'Bonjour '.$lastName.' '.$firstName.', tu as '.$age.' ans';
+    return 'Bonjour '.$param1.' '.$param2.', tu as '.$param3.' ans';
 }
 
-useless($lastName, $firstName, $age);
+echo useless($lastName, $firstName, $age);
 
 ?>

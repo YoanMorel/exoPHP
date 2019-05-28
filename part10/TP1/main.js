@@ -1,0 +1,13 @@
+$('#validationServer01').val('Yoan');
+$('#validationServer02').val('Morel');
+$('#validationServer03').val('1988-10-14');
+$('#validationServer05').val('Française');
+$('select#validationServer04 option[value="France"]').attr("selected",true);
+$('#validationServer06').val('27 rue Lefevreville');
+$('#validationServer07').val('76600');
+$('#validationServer08').val('Le Havre');
+$('#validationServerMail').val('yoan.morel@live.fr');
+$('#validationServer09').val('06 31 19 47 05');
+$('select#validationServer10 option[value="bac"]').attr("selected",true);
+$('#validationServer11').val('4539548K');
+$('#validationServer12').val('http://www.lol.com');

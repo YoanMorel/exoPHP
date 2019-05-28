@@ -13,12 +13,12 @@
     </head>
 
     <body>
-        <?php setlocale(LC_ALL, 'fr_FR'); ?>
+        <?php setlocale(LC_ALL, 'fr_FR.UTF-8'); ?>
         <div class="container">
             <form action="index.php" method="post">
                 <div class="row">
                     <div class="col-6">
-                        <label id="month">Mois</label>
+                        <label for="month">Mois</label>
                         <select class="form-control form-control-sm" name="month">
                             <option value="1">Janvier</option>
                             <option value="2">Février</option>
@@ -60,8 +60,8 @@
         if ($_POST):
          $year = htmlspecialchars($_POST['year']);
          $month = htmlspecialchars($_POST['month']);
-         $nbDay = date('t', mktime(0, 0, 0, $month, 1, $year));
-         $firstDay = date('N', mktime(0, 0, 0, $month, 1, $year));
+         $nbDay = date('t', mktime(0, 0, 0, $month, 1, $year)); // nbr de jours du mois en fonction de l'année
+         $firstDay = date('N', mktime(0, 0, 0, $month, 1, $year)); // ISO du jour en fonction du mois et de l'année
          ?>
          <div class="container mx-auto">
              <table class="table table-bordered">
@@ -79,13 +79,13 @@
                  </thead>
                  <tbody>
                  <?php
-                  $xDay = 1;
-                  $date = 1;
+                 $xDay = 1; // xDay n'est qu'un compteur qu'on incrémente pour l'éxécution de la boucle
+                 $date = 1; // date est la date en fonction du jour
                   
-                  while ($xDay <= $nbDay):
+                  while ($xDay <= $nbDay): // Boucle while qui va créer lignes et cellules en fonction du nbr de jours dans le mois
                    ?><tr><?php
-                   for ($i = 1; $i <= 7; $i++):
-                    if ($xDay < $firstDay || $date > $nbDay):
+                   for ($i = 1; $i <= 7; $i++): // Boucle qui va créer les 7 cellules
+                    if ($xDay < $firstDay || $date > $nbDay): // Condition pour griser les cellules qui ne correspondent à aucun jours
                      ?><td class="nothing"></td><?php
                     else:
                      ?><td class="alignText"><?= $date++; ?></td><?php
