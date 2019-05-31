@@ -42,9 +42,9 @@
                             $maxYear = 2040;
 
                             while ($minYear <= $maxYear):
-                             ?><option value="<?= $minYear ?>"><?= $minYear; ?></option>
-                             <?php
-                             $minYear++;
+                                ?><option value="<?= $minYear ?>"><?= $minYear; ?></option>
+                                <?php
+                                $minYear++;
                             endwhile;
                             ?>
                         </select>
@@ -58,47 +58,47 @@
 
         <?php
         if ($_POST):
-         $year = htmlspecialchars($_POST['year']);
-         $month = htmlspecialchars($_POST['month']);
-         $nbDay = date('t', mktime(0, 0, 0, $month, 1, $year)); // nbr de jours du mois en fonction de l'année
-         $firstDay = date('N', mktime(0, 0, 0, $month, 1, $year)); // ISO du jour en fonction du mois et de l'année
-         ?>
-         <div class="container mx-auto">
-             <table class="table table-bordered">
-                 <caption><?= strftime('%B', mktime(0, 0, 0, $month, 1, 1970)) . ' ' . $year; ?></caption>
-                 <thead class="thead-dark">
-                     <tr class="text-center">
-                         <th>Lundi</th>
-                         <th>Mardi</th>
-                         <th>Mercredi</th>
-                         <th>Jeudi</th>
-                         <th>Vendredi</th>
-                         <th>Samedi</th>
-                         <th>Dimanche</th>
-                     </tr>
-                 </thead>
-                 <tbody>
-                 <?php
-                 $xDay = 1; // xDay n'est qu'un compteur qu'on incrémente pour l'éxécution de la boucle
-                 $date = 1; // date est la date en fonction du jour
-                  
-                  while ($xDay <= $nbDay): // Boucle while qui va créer lignes et cellules en fonction du nbr de jours dans le mois
-                   ?><tr><?php
-                   for ($i = 1; $i <= 7; $i++): // Boucle qui va créer les 7 cellules
-                    if ($xDay < $firstDay || $date > $nbDay): // Condition pour griser les cellules qui ne correspondent à aucun jours
-                     ?><td class="nothing"></td><?php
-                    else:
-                     ?><td class="alignText"><?= $date++; ?></td><?php
-                    endif;
-                    $xDay++;
-                   endfor;
-                   ?></tr><?php
-                  endwhile;
-                 ?>
-                 </tbody>
-             </table>
+            $year = htmlspecialchars($_POST['year']);
+            $month = htmlspecialchars($_POST['month']);
+            $nbDay = date('t', mktime(0, 0, 0, $month, 1, $year)); // nbr de jours du mois en fonction de l'année
+            $firstDay = date('N', mktime(0, 0, 0, $month, 1, $year)); // ISO du jour en fonction du mois et de l'année
+            ?>
+            <div class="container mx-auto">
+                <table class="table table-bordered">
+                    <caption><?= strftime('%B', mktime(0, 0, 0, $month, 1, 1970)) . ' ' . $year; ?></caption>
+                    <thead class="thead-dark">
+                        <tr class="text-center">
+                            <th>Lundi</th>
+                            <th>Mardi</th>
+                            <th>Mercredi</th>
+                            <th>Jeudi</th>
+                            <th>Vendredi</th>
+                            <th>Samedi</th>
+                            <th>Dimanche</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $xDay = 1; // xDay n'est qu'un compteur qu'on incrémente pour l'éxécution de la boucle for et des conditions à l'intérieur
+                        $date = 1; // date est la date en fonction du jour
+
+                        while ($date <= $nbDay): // Boucle while qui va créer lignes et cellules en fonction du nbr de jours dans le mois
+                            ?><tr><?php
+                                for ($i = 1; $i <= 7; $i++): // Boucle qui va créer les 7 cellules
+                                    if ($xDay < $firstDay || $date > $nbDay): // Condition pour griser les cellules qui ne correspondent à aucun jours
+                                        ?><td class="nothing"></td><?php
+                                    else:
+                                        ?><td class="alignText"><?= $date++; ?></td><?php
+                                        endif;
+                                        $xDay++;
+                                    endfor;
+                                    ?></tr><?php
+                            endwhile;
+                            ?>
+                    </tbody>
+                </table>
             <?php endif; ?>
-             
+
             <!-- Optional JavaScript -->
             <!-- jQuery first, then Popper.js, then Bootstrap JS -->
             <script src="https://code.jquery.com/jquery-3.4.0.js" integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo=" crossorigin="anonymous"></script>

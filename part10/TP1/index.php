@@ -15,8 +15,6 @@
     <body>
         <?php
         include('allCountries.php');
-        include('regexList.php');
-
 
         if (!$_POST):
             ?>
@@ -25,7 +23,7 @@
                 <form action="index.php" method="post">
                     <fieldset>
                         <legend>Profil</legend>
-                        <div class="form-row">
+                        <div class="form-row border rounded p-2">
                             <div class="col-md-4 mb-3">
                                 <label for="validationServer01">Prénom</label>
                                 <input type="text" class="form-control" id="validationServer01" placeholder="Prénom" name="fname" />
@@ -50,7 +48,7 @@
                             <div class="col-md-4 mb-3">
                                 <label for="validationServer04">Pays de Naissance</label>
                                 <select class="form-control" id="validationServer04" name="country" required>
-    <?php foreach ($countryCode as list($code, $codeAlpha2, $codeAlpha3, $countryName)): ?>
+                                    <?php foreach ($countryCode as list($code, $codeAlpha2, $codeAlpha3, $countryName)): ?>
                                         <option value="<?= $countryName ?>"><?= $countryName ?></option>
                                         <?php
                                     endforeach;
@@ -69,7 +67,7 @@
 
                     <fieldset>
                         <legend>Contact</legend>
-                        <div class="form-row">
+                        <div class="form-row border rounded p-2">
                             <div class="col-md-6 mb-3">
                                 <label for="validationServer06">Adresse</label>
                                 <input type="text" class="form-control" id="validationServer06" placeholder="N° de voie, type de voie et nom de voie" name="adress" required />
@@ -115,7 +113,7 @@
 
                     <fieldset>
                         <legend>Informations administratives</legend>
-                        <div class="form-row">
+                        <div class="form-row border rounded p-2">
                             <div class="col-md-4 mb-3">
                                 <label for="validationServer10">Diplome</label>
                                 <select class="form-control" id="validationServer10" name="degree" required>
@@ -144,7 +142,7 @@
                     </fieldset>
                     <fieldset>
                         <legend>Parlez-nous pas beaucoup de vous</legend>
-                        <div class="form-row">
+                        <div class="form-row border rounded p-2">
                             <div class="col-12 mb-3" rows="6">
                                 <label for="validationTextarea01">Si vous étiez un super héros/une super héroïne, qui seriez-vous et pourquoi?</label>
                                 <textarea class="form-control" id="validationTextarea01" placeholder="Je serais Paupaul..." name="heroQtn" required></textarea>
@@ -169,80 +167,16 @@
                         </div>
 
 
-                        <button class="btn btn-primary" type="submit">Submit form</button>
+                        <button class="btn btn-primary m-2" type="submit">Submit form</button>
                 </form>
             </div>
 
-    <?php
-else:
-
-    $requiredFieldsTab = ['fname', 'lname', 'birthD', 'country', 'nationality', 'adress', 'zCode', 'city', 'email', 'phone', 'degree', 'peNbr', 'codecLink', 'heroQtn', 'hackQtn', 'expQtn'];
-    $textFields = ['fname', 'lname', 'country', 'nationality', 'city', 'degree'];
-    $invalidFieldTab = array();
-
-    $_POST = array_map('htmlspecialchars', $_POST);
-
-    function checkForm($requiredTabData) {
-
-        for ($i = 0; $i < count($requiredTabData); $i++):
-            $dataFieldName = $requiredTabData[$i];
-            if (isset($_POST[$dataFieldName])):
-                if (empty($_POST[$dataFieldName])):
-                    return false;
-                endif;
-            else:
-                return false;
-            endif;
-        endfor;
-        return true;
-    }
-
-    if (checkForm($requiredFieldsTab)):
-        for ($i = 0; $i < count($requiredFieldsTab); $i++):
-            $dataFieldName = $requiredFieldsTab[$i];
-            if ($dataFieldName == 'birthD' && !preg_match($birthDate, $_POST[$dataFieldName])):
-                $invalidFieldTab[] = $dataFieldName;
-            elseif ($dataFieldName == 'adress' && !preg_match($street, $_POST[$dataFieldName])):
-                $invalidFieldTab[] = $dataFieldName;
-            elseif ($dataFieldName == 'email' && !preg_match($mail, $_POST[$dataFieldName])):
-                $invalidFieldTab[] = $dataFieldName;
-            elseif ($dataFieldName == 'zCode' && !preg_match($zipCode, $_POST[$dataFieldName])):
-                $invalidFieldTab[] = $dataFieldName;
-            elseif ($dataFieldName == 'phone' && !preg_match($phone, $_POST[$dataFieldName])):
-                $invalidFieldTab[] = $dataFieldName;
-            elseif ($dataFieldName == 'peNbr' && !preg_match($peNumber, $_POST[$dataFieldName])):
-                $invalidFieldTab[] = $dataFieldName;
-            elseif ($dataFieldName == 'codecLink' && !preg_match($url, $_POST[$dataFieldName])):
-                $invalidFieldTab[] = $dataFieldName;
-            elseif (in_array($dataFieldName, $textFields) && !preg_match($text, $_POST[$dataFieldName])):
-                $invalidFieldTab[] = $dataFieldName;
-            endif;
-        endfor;
-
-        if (count($invalidFieldTab)):
-            echo "Les champs suivant sont invalides : \n\n";
-            foreach ($invalidFieldTab as $value):
-                echo "$value\n\n";
-            endforeach;
+            <?php
         else:
-            ?>
-
-                    <div class="container">
-                        <p>Tous les champs ont été remplis</p>
-                        <p>Voici le retour des valeurs :</p>
-            <?php foreach ($_POST as $key => $value): ?>
-                            <p><?= $key; ?> : <?= htmlentities($value) ?></p>
-                        <?php endforeach; ?>
-                    </div>
-
-                    <?php
-                    endif;
-                else:
-                    echo 'Tous les champs du formulaire doivent-être remplis pour valider l\'étape.';
-                endif;
-
-            endif;
-            ?>
+            include('regexList.php');
+            include('showMyForm.php');
+        endif;
+        ?>
 
 
         <!-- Optional JavaScript -->
