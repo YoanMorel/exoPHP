@@ -38,8 +38,8 @@
                         <label id="year">Année</label>
                         <select class="form-control form-control-sm" name="year">
                             <?php
-                            $minYear = 1970;
-                            $maxYear = 2040;
+                            $minYear = 1950;
+                            $maxYear = 2050;
 
                             while ($minYear <= $maxYear):
                                 ?><option value="<?= $minYear ?>"><?= $minYear; ?></option>
@@ -79,18 +79,18 @@
                     </thead>
                     <tbody>
                         <?php
-                        $xDay = 1; // xDay n'est qu'un compteur qu'on incrémente pour l'éxécution de la boucle for et des conditions à l'intérieur
-                        $date = 1; // date est la date en fonction du jour
+                        $xDay = 1;
+                        $date = 1;
 
-                        while ($date <= $nbDay): // Boucle while qui va créer lignes et cellules en fonction du nbr de jours dans le mois
+                        while ($date <= $nbDay):
                             ?><tr><?php
-                                for ($i = 1; $i <= 7; $i++): // Boucle qui va créer les 7 cellules
-                                    if ($xDay < $firstDay || $date > $nbDay): // Condition pour griser les cellules qui ne correspondent à aucun jours
+                                for ($i = 1; $i <= 7; $i++):
+                                    if ($xDay < $firstDay || $date > $nbDay):
+                                        $xDay++;
                                         ?><td class="nothing"></td><?php
                                     else:
                                         ?><td class="alignText"><?= $date++; ?></td><?php
                                         endif;
-                                        $xDay++;
                                     endfor;
                                     ?></tr><?php
                             endwhile;
@@ -98,6 +98,15 @@
                     </tbody>
                 </table>
             <?php endif; ?>
+                
+<!--
+
+    Ce calendrier s'éxécute grâce à 3 compteurs : xDay, date et i dans la boucle FOR.
+    Tant que $date est inférieure ou égale au nombre de jours dans le mois sélectionné, la boucle FOR va incrémenter $i qui va afficher les 7 jours de la semaine ainsi que la varible xDay.
+    $xDay sera testée par une condition pour griser les jours jusqu'au premier jour du mois en la comparant à la variable firstDay : si $xDay est inférieure à $firstDay alors on grise la case. Sinon, on commence à incrémenter $date.
+    Si $date est supérieure à $nbDay, alors les prochaines cases vont se griser jusqu'à la fin de l'éxécution de la boucle FOR. Logiquement, la boucle WHILE cesse alors de s'éxécuter dans la foulée.
+
+-->
 
             <!-- Optional JavaScript -->
             <!-- jQuery first, then Popper.js, then Bootstrap JS -->

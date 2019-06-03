@@ -1,8 +1,8 @@
 <?php
 setlocale(LC_ALL, 'fr_FR');
 
-$datePlus20 = time() + (3600 * 24 * 20);
+$datePlus20 = time();
 
-echo strftime('%A %e %B %Y', $datePlus20);
+echo strtotime('+ 20 days');
 
 ?>
