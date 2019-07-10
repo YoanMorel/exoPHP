@@ -1,0 +1,115 @@
+body {
+  background: url('../img/care-cure-doctor-371941.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+nav {
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
+  -moz-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
+  -webkit-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
+}
+
+a {
+  outline: 0;
+  color: #28a745;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.breadcrumb-item+.breadcrumb-item::before {
+  display: inline-block;
+  padding-right: .5rem;
+  color: #6c757d;
+  content: ">";
+}
+
+.panel, .fileName {
+  padding: 5px;
+  background-color: rgba(229,238,204,0.9);
+  border: solid 1px #c3c3c3;
+}
+
+.panel {
+  display: none;
+}
+
+.fileName {
+  margin-top: 5px;
+  font-weight: bold;
+}
+
+table.profile td {
+  margin: 0;
+  padding: 0;
+}
+
+table.calendar thead.thead-dark th {
+  background-color: rgba(52, 58, 64, 0.7);
+}
+
+table.calendar td.nothing {
+  background-color: #edf5f6;
+}
+
+table.calendar td, th {
+  width: 100px;
+  height: 50px;
+  background-color: rgb(255, 255, 255);
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+table.calendar td.appointment {
+  background-color: #FFF;
+}
+
+table.calendar tr td.alignText {
+  margin: 0;
+  padding: 2px;
+  font-size: .80rem;
+}
+
+table.calendar td.alignText:hover {
+  background-color: #edf5f6;
+}
+
+p.appointmentDot {
+  color: white;
+  background-color: #007BFF;
+  border-radius: 50%;
+  width: 19.5px;
+  text-align: center;
+}
+
+div.modal-body {
+  font-size: 12.5px;
+}
+
+input[type="text"].formStyle,
+input[type="date"].formStyle,
+input[type="datetime-local"].formStyle,
+input[type="email"].formStyle,
+input[type="number"].formStyle,
+input[type="search"].formStyle,
+input[type="time"].formStyle,
+input[type="url"].formStyle,
+input[type="password"].formStyle {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  outline: none;
+  width: 70%;
+  padding: 7px;
+  border: none;
+  border-bottom: 1pt solid #28a745;
+  background: transparent;
+  margin-bottom: 10px;
+  font: 16px Arial, Helvetica, sans-serif;
+  height: 40px;
+}

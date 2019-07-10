@@ -49,7 +49,7 @@
                                 <label for="validationServer04">Pays de Naissance</label>
                                 <select class="form-control" id="validationServer04" name="country" required>
                                     <?php foreach ($countryCode as list($code, $codeAlpha2, $codeAlpha3, $countryName)): ?>
-                                        <option value="<?= $countryName ?>"><?= $countryName ?></option>
+                                        <option value="<?= $code ?>"><?= $countryName ?></option>
                                         <?php
                                     endforeach;
                                     ?>

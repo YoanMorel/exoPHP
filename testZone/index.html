@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+
+<head>
+  <meta charset="utf-8" />
+
+  <!-- Bootstrap setting -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+  <title>The Test ZONE</title>
+  <style>
+    #dropbox {
+      width: 300px;
+      height: 50px;
+      border: 3px dashed #BBBBBB;
+      line-height: 50px;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="dropbox">Drop an image from your computer</div>
+  <div class="container" id="showImg">
+  </div>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.4.0.js" integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js" integrity="sha256-0YPKAwZP7Mp3ALMRVB2i8GXeEndvCq3eSl/WsAl1Ryk=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <!-- JSmaiSON -->
+  <script>
+    // $(document).on('dragenter', '#dropfile', function() {
+    //   $(this).css('border', '3px dashed red');
+    //   return false;
+    // });
+    //
+    // $(document).on('dragover', '#dropfile', function(e) {
+    //   e.preventDefault();
+    //   e.stopPropagation();
+    //   $(this).css('border', '3px dashed red');
+    //   return false;
+    // });
+    //
+    // $(document).on('dragleave', '#dropfile', function(e) {
+    //   e.preventDefault();
+    //   e.stopPropagation();
+    //   $(this).css('border', '3px dashed #BBBBBB');
+    //   return false;
+    // });
+    //
+    // function handleReaderLoad(evt) {
+    //   var pic = {};
+    //   pic.file = evt.target.result.split(',')[1];
+    //   var str = jQuery.param(pic);
+    //
+    //   $.ajax({
+    //     type: 'POST',
+    //     url: 'imgHandler.php',
+    //     data: str,
+    //     success: function(response) {
+    //       $('div.container').append($('<a/>', {
+    //         href: response
+    //       }).text(response));
+    //     }
+    //   });
+    // }
+    //
+    // function upload(files) {
+    //   var f = files[0];
+    //
+    //   // Only process image files.
+    //   if (!f.type.match('image/jpeg')) {
+    //     alert('The file must be a jpeg image');
+    //     return false;
+    //   }
+    //   var reader = new FileReader();
+    //
+    //   // When the image is loaded,
+    //   // run handleReaderLoad function
+    //   reader.onload = handleReaderLoad;
+    //
+    //   // Read in the image file as a data URL.
+    //   reader.readAsDataURL(f);
+    // }
+    //
+    // $(document).on('drop', '#dropfile', function(e) {
+    //   if (e.originalEvent.dataTransfer) {
+    //     if (e.originalEvent.dataTransfer.files.length) {
+    //       // Stop the propagation of the event
+    //       e.preventDefault();
+    //       e.stopPropagation();
+    //       $(this).css('border', '3px dashed green');
+    //       // Main function to upload
+    //       upload(e.originalEvent.dataTransfer.files);
+    //     }
+    //   } else {
+    //     $(this).css('border', '3px dashed #BBBBBB');
+    //   }
+    //   return false;
+    // });
+
+    var dropbox;
+
+    dropbox = document.getElementById("dropbox");
+    dropbox.addEventListener("dragenter", dragenter, false);
+    dropbox.addEventListener("dragover", dragover, false);
+    dropbox.addEventListener("drop", drop, false);
+
+    function dragenter(e) {
+      e.stopPropagation();
+      e.preventDefault();
+    }
+
+    function dragover(e) {
+      e.stopPropagation();
+      e.preventDefault();
+    }
+
+    function handleFiles(files) {
+      for (var i = 0; i < files.length; i++) {
+        var file = files[i];
+        var imageType = /^image\//;
+
+        if (!imageType.test(file.type)) {
+          continue;
+        }
+
+        var img = document.createElement('img');
+        var div = document.getElementById('showImg');
+        img.classList.add('obj');
+        img.setAttribute('file', file);
+        div.appendChild(img); // En admettant que "preview" est l'élément div qui contiendra le contenu affiché.
+
+        var reader = new FileReader();
+        reader.onload = (function(aImg) {
+          return function(e) {
+            aImg.src = e.target.result;
+          };
+        })(img);
+        reader.readAsDataURL(file);
+      }
+    }
+
+    function drop(e) {
+      e.stopPropagation();
+      e.preventDefault();
+
+      var dt = e.dataTransfer;
+      var files = dt.files;
+
+      handleFiles(files);
+    }
+  </script>
+</body>
+
+</html>

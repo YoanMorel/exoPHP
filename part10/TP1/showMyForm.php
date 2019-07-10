@@ -24,7 +24,7 @@ if (checkForm($requiredFieldsTab)):
     foreach ($_POST as $key => $field):
         $validField = false;
         foreach ($regexList as $fieldName => $regex):
-            if ((preg_match($regex, $field) && $fieldName == $key) || in_array($key, $textFields)):
+            if ((preg_match($regex, $field) && $fieldName == $key) || in_array($key, $textFields) || in_array($key, $countryCode)):
                 $validField = true;
                 break;
             endif;
